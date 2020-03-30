@@ -34,7 +34,7 @@ const insert = () => {
 
 // insert();
 
-app.get('/:limit', (req, res) => {
+app.get('/stream/:limit', (req, res) => {
   const queryString = 'SELECT * FROM books' + (req.params.limit ? (' limit ' + req.params.limit) : '');
   console.log(queryString);
   const query = new QueryStream(queryString);
@@ -52,8 +52,12 @@ app.get('/:limit', (req, res) => {
   stream.pipe(JSONStream.stringify()).pipe(res);
 })
 
+app.get('/health', (req, res) => {
+  res.send('ok');
+})
 
-app.get('/getdata/:limit', (req, res) => {
+
+app.get('/stream/getdata/:limit', (req, res) => {
 
   const stream = request('http://localhost:3000/' + req.params.limit);
 
