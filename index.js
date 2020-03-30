@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 9000
 const { Client } = require('pg')
 
 const config = {
@@ -59,7 +59,7 @@ app.get('/health', (req, res) => {
 
 app.get('/stream/getdata/:limit', (req, res) => {
 
-  const stream = request('http://localhost:3000/' + req.params.limit);
+  const stream = request('http://localhost:9000/' + req.params.limit);
 
   stream.on('end', () => {
     console.log('ended');
